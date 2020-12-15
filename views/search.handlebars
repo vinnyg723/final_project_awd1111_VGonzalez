@@ -1,0 +1,173 @@
+<main class="container py-5 " id="search">
+  <div class="animate__animated animate__slideInDown ">
+    <h1 class="text-white shadow">
+      Mercedes Benz Online Dealership
+    </h1>
+
+    <form id="search-form" method="GET" class="border mb-3 p-3">
+
+      <label class="text-white">
+        Search
+      </label>
+      <div class="row">
+        <div class="form-group col-9">
+          <input id="q" name="q" type="search" class="form-control" />
+        </div>
+        <div class="form-group col-3 align-self-center">
+          <button type="submit" class="btn btn-info text-white  shadow">
+            <i class="fas fa-search"></i> &nbsp; Search
+          </button>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3 text-white">
+          <label for="model" class="shadow">
+            Model
+          </label>
+          <select id="model" name="model" class="form-control">
+            <option value="">
+              All Models
+            </option>
+            <option value="C-Class">
+              C-Class
+            </option>
+            <option value="E-Class">
+              E-Class
+            </option>
+            <option value="G-Class">
+              G-Class
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3 text-white">
+          <label for="price" class="shadow">
+            Price
+          </label>
+          <select id="price" name="price" class="form-control">
+            <option value="">
+              All Prices
+            </option>
+            <option value="45000">
+              price: 0 - $45,000
+            </option>
+            <option value="65000">
+              price: 0 - $65,000
+            </option>
+            <option value="100000">
+              price: 0 - $100,000
+            </option>
+
+          </select>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3 text-white">
+          <label for="type" class="shadow">
+            Car Types
+          </label>
+          <select id="type" name="type" class="form-control">
+            <option value="">
+              All Types
+            </option>
+            <option value="sedan">
+              Sedans
+            </option>
+            <option value="SUV">
+              SUV
+            </option>
+            <option value="coupe">
+              Coupe
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3 text-white">
+          <label for="sortBy" class="shadow">
+            Sort By
+          </label>
+          <select id="sortBy" name="sortBy" class="form-control">
+            <option value="">
+              Default
+            </option>
+            <option value="name_A">
+              Name A-Z
+            </option>
+            <option value="name_Z">
+              Name Z-A
+            </option>
+            <option value="price">
+              Price
+            </option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="search-results-spinner" class="spinner-border m-2 recolor"></div>
+  <div id="search-results" class="row">
+
+  </div>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/oboe-browser.min.js"></script>
+  <script>
+    const performSearch = () => {
+      $('#search-results-spinner').removeClass('d-none');
+      $('#search-results').html('');
+
+      const formData = $('#search-form').serialize();
+
+      oboe('/api/search?' + formData)
+        .node('![*]', item => {
+          if (item) {
+
+      item.price = (item.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+            $('#search-results').append(`
+<div class="card col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 animate__animated animate__bounceIn mt-3" style="width: 16rem;">
+  <a href="/car/${item._id}"><img class="card-img-top mt-3 img-thumbnail" src="../images/${item.image}" alt="${item.name} image"></a>
+  <div class="card-body">
+    <h5 class="card-title text-white">${item.name}</h5>
+    <p class="card-text light_grey bg-recolor text-center p-2">Starting at $${item.price}</p>
+    <p class="card-text text-white">${item.description}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    {{!-- <li class="list-group-item text-center text-white">${item.type} / ${item.model}</li> --}}
+    <a href="/car/${item._id}" class="btn btn-info text-center mx-2 my-2 text-white  shadow"><i class="far fa-eye"></i>&nbsp; View</a>
+  </ul>
+</div>
+            `);
+          }
+          return oboe.drop;
+        })
+        .done(_ => {
+          $('#search-results-spinner').addClass('d-none');
+        })
+        .fail(res => {
+          //Nothing yet
+        });
+    };
+
+    $(() => {
+      performSearch();
+      $('#search-form').on('submit', (evt) => {
+        evt.preventDefault();
+        performSearch();
+      });
+      $('#q').on('change', (evt) => {
+        $('#search-form').trigger('submit');
+      });
+      $('#model').on('change', (evt) => {
+        $('#search-form').trigger('submit');
+      });
+      $('#type').on('change', (evt) => {
+        $('#search-form').trigger('submit');
+      });
+      $('#sortBy').on('change', (evt) => {
+        $('#search-form').trigger('submit');
+      });
+      $('#price').on('change', (evt) => {
+        $('#search-form').trigger('submit');
+      });
+    });
+  </script>
+</main>

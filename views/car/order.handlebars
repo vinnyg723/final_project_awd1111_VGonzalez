@@ -1,0 +1,95 @@
+<main class="container pt-5" id="orderPage">
+  <div class="row">
+    <div class="h2 mr-auto ml-3 mb-3 shadow">Order for {{car.name}}</div>
+    <nav aria-label="breadcrumb ml-auto">
+      <ol class="breadcrumb ml-2">
+        <li class="breadcrumb-item"><a href="/">Cars</a></li>
+        <li class="breadcrumb-item"><a href="/">{{car.type}}</a></li>
+        <li class="breadcrumb-item"><a href="/car/{{car._id}}">{{car.name}}</a></li>
+        <li class="breadcrumb-item" aria-current="page">Order</li>
+      </ol>
+    </nav>
+  </div>
+  <form id="order-form" method="POST" class="form needs-validation" action="/api/car/{{car._id}}/order" novalidate>
+
+    <div class="form-group">
+      <input id="car_id" name="car_id" class="form-control" value="{{car._id}}" hidden>
+    </div>
+
+    <div class="h4 shadow">Please provide your contact information so we can get in touch about your order.</div>
+
+    <div class="form-group mt-5">
+      <label for="firstName">First Name</label>
+      <input id="firstName" name="firstName" class="form-control" type="text" value="{{account.firstName}}" required>
+      <div class="invalid-feedback">
+        Please enter your first name.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" name="lastName" class="form-control" type="text" value="{{account.lastName}}" required>
+      <div class="invalid-feedback">
+        Please enter your last name.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" name="email" class="form-control" type="email" placeholder="john@doe.com"
+        value="{{account.email}}" required>
+      <div class="invalid-feedback">
+        Please enter a valid email address.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input id="phone" type="phone" name="phone" class="form-control" placeholder="(123) 456-7890"
+        value="{{account.phone}}" required>
+      <div class="invalid-feedback">
+        Please enter a valid phone number.
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary mt-3 mr-3 mr-auto mb-3 shadow"><i class="far fa-paper-plane"></i>&nbsp;
+          Submit order
+          Form</button>
+        <button type="button" class="btn btn-danger shadow mt-3 mb-3 mr-auto" data-toggle="modal" data-target="#reset-form">
+          <i class="fas fa-trash-alt"></i>&nbsp; Reset Form
+        </button>
+      </div>
+    </div>
+
+    <div class="modal fade" id="reset-form">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h4 class="modal-title">Confirm Reset</h4>
+            <button type="button" class="close shadow" data-dismiss="modal">&times;</button>
+          </div>
+
+          <div class="modal-body text-center">
+            Do you want to reset the form?
+          </div>
+
+          <div class="modal-footer">
+            <form id="reset-form">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 m-auto d-flex justify-content-center">
+                <button id="clearForm" class="btn btn-danger shadow" data-dismiss="modal"><i
+                    class="fas fa-trash-alt"></i>&nbsp; Reset</button>
+              </div>
+            </form>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 m-auto d-flex justify-content-center">
+              <button type="button" class="btn btn-success shadow" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp;
+                Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="form-group text-center">
+      <output class="text-danger h5">{{error}}</output>
+    </div>
+  </form>
+</main>

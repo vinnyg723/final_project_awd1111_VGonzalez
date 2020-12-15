@@ -1,0 +1,119 @@
+a {
+  color: var(--info);
+}
+a:hover,
+a:focus {
+  color: var(--info);
+}
+img {
+  width: 200px; /* You can set the dimensions to whatever you want */
+  height: 300px;
+  object-fit: cover;
+}
+
+
+.navbar-toggler-icon,.navbar-toggler{
+  background-color: rgb(54, 54, 54)
+}
+
+
+*{
+  font-family: 'Playfair Display', serif;
+}
+/* main{
+  min-height:100vh;
+} */
+/* This only changes this particular animation duration */
+.animate__animated.animate__bounceIn {
+  --animate-duration: 2s;
+}
+
+/* @import url('https://fonts.googleapis.com/css?family=Lobster&display=swap'){ repeat scroll 0 0 rgba(0, 0, 0 , 0); */
+
+body {
+  background: #fff;
+}
+
+
+.wrapper {
+  background: url("../images/background.jpg");
+  color: #eee;
+  width: 100%;
+  min-height: 100vh;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+  animation: animation 200s linear infinite;
+}
+
+@keyframes animation {
+   100%{
+    background-position:0px -3000px;
+  }
+}
+
+.toplogo {
+  margin-top: 5px;
+}
+
+.toplogo img {
+  height : 8%;
+  width : 8%;
+}
+
+.modal-backdrop{
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  top: 10px;
+  right: 100px;
+  bottom: 0;
+  left: 0;
+  z-index: 10040;
+  overflow: auto;
+  overflow-y: auto;
+}
+
+.wrapper>#view,#loginPage,#registerPage,#orderPage,#addedPage,#deletedPage,#editedPage,#thankYouPage,#edit,#add,#delete{
+  background: rgba(0, 0, 0, .35);
+  width: 100%;
+  min-height: 100%;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+  animation: animation 200s linear infinite;
+}
+
+.shadow{
+  text-shadow: 2px 2px rgb(34, 34, 34);
+}
+
+.light_grey{
+  color:rgb(214, 214, 214);
+}
+
+.navMain {
+  
+  width: 100%;
+  border-bottom: 3px solid rgba(53, 77, 121, 0.623);
+}
+
+
+
+/* body {
+	background: linear-gradient(-45deg, #000000, #17174e, #1d1d75, #02023f);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+} */

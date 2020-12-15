@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    {{#if title}}{{title}} - {{/if}} Mercedes Benz Online Dealership
+  </title>
+  {{!--
+  <link rel="stylesheet" href="/css/bootstrap.min.css"> --}}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/themes/lux/bootstrap.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css" />
+  {{!--
+  <script defer src="/js/jquery.min.js"></script> --}}
+  {{!--
+  <script defer src="/js/bootstrap.min.js"></script> --}}
+  <script defer src="/js/main.js"></script>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-recolor navMain">
+    <a class="navbar-brand text-white toplogo" href="/"><img src="../images/logo.png"  alt="Logo">&nbsp; Mercedes Benz Online Dealership</a>
+    <button class="navbar-toggler ml-auto pt-2" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"><i class="fas fa-grip-lines"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto navText">
+        {{!-- Needs to be shown ONLY if 'Admin' --}}
+        <li class="nav-item  mr-5">
+          <a class="btn btn-info ml-auto mr-5 text-white" href="/admin"><i class="fas fa-user-cog"></i>&nbsp; Admin</a>
+        </li>
+        <a class="nav-link text-white" href="/"><i class="fas fa-car"></i>&nbsp; Vehicles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/account/login"><i class="fas fa-sign-in-alt"></i>&nbsp; Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/account/logout"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+
+{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" crossorigin="anonymous"></script> --}}
+<div class="wrapper">
+  {{{body}}}
+  
+</div>
+</body>
+
+</html>
