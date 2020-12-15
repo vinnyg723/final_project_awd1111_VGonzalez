@@ -1,22 +1,30 @@
 <main class="container py-5">
-  <div class="row mb-4">
-    {{#with car}}
-    <h2 class="h1 mb-4 mr-auto ml-2 shadow">Delete {{name}} Page</h2>
+
+    {{#with account}}
+         <nav aria-label="breadcrumb ml-auto">
+  <ol class="breadcrumb ml-2">
+        <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
+        <li class="breadcrumb-item"><a href="/admin/account">View Accounts</a></li>
+        <li class="breadcrumb-item"  aria-current="page"><a href="/admin/account/delete/{{_id}}">Delete</a></li>
+      </ol>
+      </nav>
+        <div class="row mb-4">
+    <h2 class="h1 mb-4 mr-auto ml-2 shadow">Delete {{username}} Page</h2>
   </div>
   <div class="row d-flex justify-content-center align-self-center mx-3">
     <div class="card col-12" style="max-width: 26rem;">
-      <img class="card-img-top mt-3 img-fluid" src="../../../images/{{image}}" alt="{{name}} image">
       <div class="card-body text-center">
-        <h5 class="card-title h3 shadow">{{name}}</h5>
+        <h5 class="card-title h2 shadow">{{username}}</h5>
+        <p class="card-text shadow h5">{{firstName}} &nbsp; {{lastName}}</p>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item text-center h5 shadow">${{price}} / {{year}}</li>
+          <li class="list-group-item text-center h5 shadow">{{phone}} / {{email}}</li>
         </ul>
-        <p class="card-text shadow">{{description}}</p>
+        
       </div>
 
 
       <button type="button" class="btn btn-danger mt-3 mb-3 shadow" data-toggle="modal" data-target="#deleteModal">
-        <i class="fas fa-trash-alt"></i> &nbsp; Delete Car
+        <i class="fas fa-trash-alt"></i> &nbsp; Delete Account
       </button>
     </div>
     <div class="modal fade" id="deleteModal">
@@ -29,12 +37,12 @@
           </div>
 
           <div class="modal-body text-center shadow">
-            Do you want to delete {{name}}?
+            Do you want to delete {{username}}?
           </div>
 
           <div class="modal-footer">
             <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 m-auto d-flex justify-content-center">
-              <form id="delete-car-form" method="POST" action="/api/admin/car/delete/{{_id}}">
+              <form id="delete-account-form" method="POST" action="/api/admin/account/delete/{{_id}}">
                 <button type="submit" class="btn btn-danger shadow"><i class="fas fa-trash-alt"></i> &nbsp; Delete</button>
               </form>
             </div>

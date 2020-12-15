@@ -10,11 +10,24 @@ router.use(express.urlencoded({
 }));
 router.use(express.json());
 
+
+
 router.get('/', auth, admin, async (req, res, next) => {
   try {
+    res.render('admin/view', {
+      title: 'Admin Page',
+      auth: req.auth,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+
+router.get('/car', auth, admin, async (req, res, next) => {
+  try {
     const cars = await db.getAllCars();
-
-
 
     res.render('admin/car/view', {
       title: 'Admin Page',
@@ -72,6 +85,78 @@ router.get('/car/delete/:id', auth, admin, async (req, res, next) => {
       });
     } else {
       res.status(404).type('text/plain').send('car not found');
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+
+
+
+
+
+router.get('/account', auth, admin, async (req, res, next) => {
+  try {
+    const accounts = await db.getAllAccounts();
+
+    res.render('admin/account/view', {
+      title: 'Admin Page',
+      accounts,
+      auth: req.auth,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/account/add', auth, admin, async (req, res, next) => {
+  try {
+    const account_id = req.params.id;
+    const account = await db.getAccountById(account_id);
+    res.render('admin/account/add', {
+      title: "Add account",
+      account,
+      auth: req.auth,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/account/edit/:id', auth, admin, async (req, res, next) => {
+  try {
+    const account_id = req.params.id;
+    const account = await db.getAccountById(account_id);
+
+    if (account) {
+      res.render('admin/account/edit', {
+        title: "Edit " + account.username,
+        account,
+        auth: req.auth,
+      });
+    } else {
+      res.status(404).type('text/plain').send('account not found');
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/account/delete/:id', auth, admin, async (req, res, next) => {
+  try {
+    const account_id = req.params.id;
+    const account = await db.getAccountById(account_id);
+    
+    if (account) {
+      res.render('admin/account/delete', {
+        title: "Delete " + account.username,
+        account,
+        auth: req.auth,
+      });
+    } else {
+      res.status(404).type('text/plain').send('account not found');
     }
   } catch (err) {
     next(err);

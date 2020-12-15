@@ -1,7 +1,13 @@
 <main class="container pt-5 pb-5 animate__animated animate__fadeInTopRight">
  <div class="row d-flex mb-4">
-    <h2 class="h1 mr-auto ml-3 shadow">Admin Page</h2>
-    <a class="btn btn-primary ml-auto align-self-center mr-3" href="admin/car/add"><i class="far fa-plus-square"></i> &nbsp; Add Car</a>
+   <nav aria-label="breadcrumb ml-auto">
+      <ol class="breadcrumb ml-2">
+        <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
+        <li class="breadcrumb-item"  aria-current="page"><a href="/admin/car">View Cars</a></li>
+      </ol>
+    </nav>
+    <h2 class="h1 mr-auto ml-3 shadow"> View Cars</h2>
+    <a class="btn btn-primary ml-auto align-self-center mr-3" href="car/add"><i class="far fa-plus-square"></i> &nbsp; Add Car</a>
     </div>
     {{#each cars}}
     <div class="card mt-3">
@@ -12,8 +18,8 @@
           <div class="h5 col-sm align-self-center">Year: {{year}}</div>
           <div class="h5 col-sm align-self-center">Model: {{model}}</div>
           <div class="mr-4">
-            <a href="admin/car/edit/{{_id}}" class="btn btn-primary shadow"><i class="far fa-edit"></i>&nbsp; Edit</a>
-            <a href="admin/car/delete/{{_id}}" class="btn btn-danger shadow"><i class="fas fa-trash-alt"></i>&nbsp; Delete</a>
+            <a href="car/edit/{{_id}}" class="btn btn-primary shadow"><i class="far fa-edit"></i>&nbsp; Edit</a>
+            <a href="car/delete/{{_id}}" class="btn btn-danger shadow"><i class="fas fa-trash-alt"></i>&nbsp; Delete</a>
           </div>
         </div>
       </div>

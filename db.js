@@ -22,6 +22,16 @@ const getAllCars = async () => {
   return database.collection('cars').find({}).toArray();
 };
 
+const getAllOrders = async () => {
+  const database = await connect();
+  return database.collection('orders').find({}).toArray();
+};
+
+const getAllAccounts = async () => {
+  const database = await connect();
+  return database.collection('accounts').find({}).toArray();
+};
+
 const getCarsByModel = async (model) => {
   const database = await connect();
   return database.collection('cars').find({ model: model }).toArray();
@@ -77,6 +87,29 @@ const updateCar = async (car) => {
   );
 };
 
+const updateAccount = async (account) => {
+  const database = await connect();
+  return database.collection('accounts').updateOne(
+    { _id: new ObjectID(account._id) },
+    {
+      $set: {
+        username: account.username,
+        password: account.password,
+        lastName: account.lastName,
+        firstName: account.firstName,
+        email: account.email,
+        phone: account.phone,
+        keywords: account.keywords
+      },
+    }
+  );
+};
+
+const deleteAccountById = async (id) => {
+  const database = await connect();
+  return database.collection('accounts').deleteOne({ _id: new ObjectID(id) });
+};
+
 const deleteCarById = async (id) => {
   const database = await connect();
   return database.collection('cars').deleteOne({ _id: new ObjectID(id) });
@@ -125,6 +158,8 @@ const getAccountById = async (id) => {
 module.exports = {
   connect,
   getAllCars,
+  getAllAccounts,
+  getAllOrders,
   getCarsByType,
   getCarsByModel,
   getCarsByPrice,
@@ -132,7 +167,9 @@ module.exports = {
   getCarById,
   insertCar,
   updateCar,
+  updateAccount,
   deleteCarById,
+  deleteAccountById,
   insertOrder,
   getAccountByUsername,
   insertAccount,

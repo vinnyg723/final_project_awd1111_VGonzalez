@@ -1,46 +1,53 @@
 <main class="container pt-5" id="edit">
   {{#with car}}
+   <nav aria-label="breadcrumb ml-auto">
+  <ol class="breadcrumb ml-2">
+        <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
+        <li class="breadcrumb-item"><a href="/admin/car">View Cars</a></li>
+        <li class="breadcrumb-item"  aria-current="page"><a href="/admin/car/edit/{{_id}}">Edit</a></li>
+      </ol>
+      </nav>
   <h1 class="shadow">Edit {{name}}</h1>
   <form id="edit-car-form" method="POST" class="form needs-validation" action="/api/admin/car/edit/{{_id}}" novalidate>
     <input id="_id" name="_id" class="form-control" type="text" value={{_id}} hidden>
     <div class="form-group">
       <label for="name">Name</label>
-      <input id="name" name="name" class="form-control" type="text" value={{name}} required>
+      <input id="name" name="name" class="form-control" type="text" value="{{name}}" required>
       <div class="invalid-feedback">
         Please enter a name.
       </div>
     </div>
     <div class="form-group">
       <label for="price" class="mt-2">Price</label>
-      <input id="price" name="price" class="form-control" type="text" value={{price}} required>
+      <input id="price" name="price" class="form-control" type="text" value="{{price}}" required>
       <div class="invalid-feedback">
         Please enter a price.
       </div>
     </div>
     <div class="form-group">
       <label for="year" class="mt-2">Year</label>
-      <input id="year" name="year" class="form-control" type="text" value={{year}} required>
+      <input id="year" name="year" class="form-control" type="text" value="{{year}}" required>
       <div class="invalid-feedback">
         Please enter a year.
       </div>
     </div>
     <div class="form-group">
       <label for="type" class="mt-2">Type</label>
-      <input id="type" name="type" class="form-control" type="text" value={{type}} required>
+      <input id="type" name="type" class="form-control" type="text" value="{{type}}" required>
       <div class="invalid-feedback">
         Please enter a car type. (SUV, Coupe, Sedan...)
       </div>
     </div>
     <div class="form-group">
       <label for="model" class="mt-2">Model</label>
-      <input id="model" name="model" class="form-control" type="text" value={{model}} required>
+      <input id="model" name="model" class="form-control" type="text" value="{{model}}" required>
       <div class="invalid-feedback">
         Please enter model.
       </div>
     </div>
     <div class="form-group">
       <label for="description" class="mt-2">Description</label>
-      <input id="description" name="description" class="form-control" type="text" value={{description}} required>
+      <input id="description" name="description" class="form-control" type="text" value="{{description}}" required>
       <div class="invalid-feedback">
         Please enter your description.
       </div>
