@@ -6,7 +6,7 @@ a:focus {
   color: var(--info);
 }
 img {
-  width: 200px; /* You can set the dimensions to whatever you want */
+  width: 200px; 
   height: 300px;
   object-fit: cover;
 }
@@ -20,19 +20,13 @@ img {
 *{
   font-family: 'Playfair Display', serif;
 }
-/* main{
-  min-height:100vh;
-} */
-/* This only changes this particular animation duration */
+
 .animate__animated.animate__bounceIn {
   --animate-duration: 2s;
 }
 
 /* @import url('https://fonts.googleapis.com/css?family=Lobster&display=swap'){ repeat scroll 0 0 rgba(0, 0, 0 , 0); */
 
-body {
-  background: #fff;
-}
 
 
 .wrapper {
@@ -51,6 +45,35 @@ body {
   }
 }
 
+@media (max-width: 500px) {
+  .navbar-brand {
+  font-size:15px;
+  }
+
+}
+
+@media (max-width: 750px) {
+      .navbar-brand {
+  font-size:20px;
+  }
+
+}
+
+@media (max-width: 1000px) {
+      .navbar-brand {
+  font-size:30px;
+  }
+
+}
+@media (max-width: 1200px) {
+      .navbar-brand {
+  font-size:50px;
+  }
+
+} 
+
+
+
 .toplogo {
   margin-top: 5px;
 }
@@ -60,8 +83,17 @@ body {
   width : 8%;
 }
 
+.imageO {
+  opacity: 0.2;
+}
+
 .modal-backdrop{
   display: none;
+}
+
+#searchButton{
+  border-left: none;
+  float: left;
 }
 
 .modal {
@@ -98,7 +130,9 @@ body {
   width: 100%;
   border-bottom: 3px solid rgba(53, 77, 121, 0.623);
 }
-
+footer{
+  border-top: 3px solid rgba(53, 77, 121, 0.623);
+}
 
 
 /* body {

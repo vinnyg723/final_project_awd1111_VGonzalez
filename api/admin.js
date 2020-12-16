@@ -323,4 +323,139 @@ router.post('/account/delete/:id', async (req, res, next) => {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// Add order
+router.post('/order/add', async (req, res, next) => {
+  try {
+    let order = null;
+    let error = null;
+
+    const schema = Joi.object({
+      firstName: Joi.string().required().min(3).max(32).trim(),
+      lastName: Joi.string().required().min(3).max(32).trim(),
+      email: Joi.string().required().max(36).trim().lowercase(),
+      phone: Joi.string().required(),
+    });
+
+    order = await schema.validateAsync(req.body)
+    if (!order) {
+      error = 'Invalid fields';
+    } else {
+
+      const emailPattern = new RegExp(/^([^@]{1,})\@([A-Za-z0-9\.]{1,})\.([A-Za-z]{1,})$/);
+      const phonePattern = new RegExp(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/);
+
+      if (!(phonePattern.test(order.phone))) {
+        error = "Invalid Phone format."
+      }
+      if (!(emailPattern.test(order.email))) {
+        error = "Invalid Email format."
+      }
+
+
+    }
+    if (error) {
+      res.render('admin/order/add', {
+        order,
+        error: error
+      })
+    } else {
+
+     
+      debug(order)
+      await db.insertOrder(order);
+      res.render('added', {
+        title: "Added Success",
+        order,
+      });
+
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+// Edit order
+router.post('/order/edit/:id', async (req, res, next) => {
+  try {
+
+    let order = null;
+    let error = null;
+
+    const schema = Joi.object({
+      _id: Joi.objectId().required(),
+      firstName: Joi.string().required().min(3).max(32).trim(),
+      lastName: Joi.string().required().min(3).max(32).trim(),
+      email: Joi.string().required().max(36).trim().lowercase(),
+      phone: Joi.string().required(),
+    });
+
+    order = await schema.validateAsync(req.body)
+    if (!order) {
+      error = 'Invalid fields';
+    } else {
+
+      const emailPattern = new RegExp(/^([^@]{1,})\@([A-Za-z0-9\.]{1,})\.([A-Za-z]{1,})$/);
+      const phonePattern = new RegExp(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/);
+
+      if (!(phonePattern.test(order.phone))) {
+        error = "Invalid Phone format."
+      }
+      if (!(emailPattern.test(order.email))) {
+        error = "Invalid Email format."
+      }
+
+
+    }
+    if (error) {
+      res.render('admin/order/edit', {
+        title: "Edit" + order.username,
+        order,
+        error: error
+      })
+    } else {
+
+
+      debug(order)
+      await db.updateOrder(order);
+      res.render('edited', {
+        title: "Edited Success",
+        order,
+      });
+
+    }
+  } catch (err) {
+    next(err);
+  }
+
+});
+
+// DELETE order
+router.post('/order/delete/:id', async (req, res, next) => {
+  try {
+    const schema = Joi.objectId().required();
+    const id = await schema.validateAsync(req.params.id);
+    debug(`delete order id=${id}`);
+    await db.deleteOrderById(id);
+    res.render('deleted', {
+      title: "Delete Success",
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+
 module.exports = router;

@@ -164,4 +164,91 @@ router.get('/account/delete/:id', auth, admin, async (req, res, next) => {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.get('/order', auth, admin, async (req, res, next) => {
+  try {
+    const orders = await db.getAllOrders();
+
+    res.render('admin/order/view', {
+      title: 'Admin Page',
+      orders,
+      auth: req.auth,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/order/add', auth, admin, async (req, res, next) => {
+  try {
+    const order_id = req.params.id;
+    const order = await db.getOrderById(order_id);
+    res.render('admin/order/add', {
+      title: "Add order",
+      order,
+      auth: req.auth,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/order/edit/:id', auth, admin, async (req, res, next) => {
+  try {
+    const order_id = req.params.id;
+    const order = await db.getOrderById(order_id);
+
+    if (order) {
+      res.render('admin/order/edit', {
+        title: "Edit " + order.username,
+        order,
+        auth: req.auth,
+      });
+    } else {
+      res.status(404).type('text/plain').send('order not found');
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/order/delete/:id', auth, admin, async (req, res, next) => {
+  try {
+    const order_id = req.params.id;
+    const order = await db.getOrderById(order_id);
+    
+    if (order) {
+      res.render('admin/order/delete', {
+        title: "Delete " + order.username,
+        order,
+        auth: req.auth,
+      });
+    } else {
+      res.status(404).type('text/plain').send('order not found');
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+
 module.exports = router;

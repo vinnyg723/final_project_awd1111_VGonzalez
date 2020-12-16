@@ -59,6 +59,14 @@ const getCarById = async (id) => {
   });
 };
 
+const getOrderById = async (id) => {
+  const database = await connect();
+  return database.collection('orders').findOne({
+    _id: new ObjectID(id),
+  });
+};
+
+
 const insertCar = async (car) => {
   const database = await connect();
   return database.collection('cars').insertOne(car);
@@ -87,6 +95,22 @@ const updateCar = async (car) => {
   );
 };
 
+const updateOrder = async (order) => {
+  const database = await connect();
+  return database.collection('orders').updateOne(
+    { _id: new ObjectID(order._id) },
+    {
+      $set: {
+        car_id: order.car_id,
+        firstName: order.firstName,
+        lastName: order.price,
+        email: order.email,
+        phone: order.phone,
+      },
+    }
+  );
+};
+
 const updateAccount = async (account) => {
   const database = await connect();
   return database.collection('accounts').updateOne(
@@ -103,6 +127,11 @@ const updateAccount = async (account) => {
       },
     }
   );
+};
+
+const deleteOrderById = async (id) => {
+  const database = await connect();
+  return database.collection('orders').deleteOne({ _id: new ObjectID(id) });
 };
 
 const deleteAccountById = async (id) => {
@@ -165,10 +194,13 @@ module.exports = {
   getCarsByPrice,
   getCarByName,
   getCarById,
+  getOrderById,
   insertCar,
   updateCar,
+  updateOrder,
   updateAccount,
   deleteCarById,
+  deleteOrderById,
   deleteAccountById,
   insertOrder,
   getAccountByUsername,
@@ -176,5 +208,6 @@ module.exports = {
   getAccountById,
   getAccountsByUsername,
   getAccountsByEmail,
-  getAccountByEmail
+  getAccountByEmail,
+ 
 };

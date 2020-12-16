@@ -44,8 +44,8 @@ app.use(morgan('tiny'));
 app.use(cookieParser());
 
 // routes
-app.get('/', (req, res) => res.render('search'));
- app.get('/thankYou', (req, res) => res.render('thankYou', { title: 'Thank You' }));
+app.get('/', (req, res) => res.render('home'));
+app.get('/thankYou', (req, res) => res.render('thankYou', { title: 'Thank You' }));
 app.get('/stream/jquery', (req, res) => res.render('stream/jquery'));
 app.get('/stream/xhr', (req, res) => res.render('stream/xhr'));
 app.get('/stream/fetch', (req, res) => res.render('stream/fetch'));
@@ -59,7 +59,7 @@ app.use('/api/admin', require('./api/admin'));
 app.use('/account', require('./routes/account'));
 app.use('/car', require('./routes/car'));
 app.use('/admin', require('./routes/admin'));
-
+app.get('/search', (req, res) => res.render('search', { title: 'Search Page' }));
 
 // static files
 app.use('/', express.static('public'));
