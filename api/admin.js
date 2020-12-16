@@ -172,7 +172,7 @@ router.post('/account/add', async (req, res, next) => {
 
     const schema = Joi.object({
       username: Joi.string().required().min(3).max(24).trim(),
-      password: Joi.string().required().min(3).max(64).trim(),
+      password: Joi.string().required().min(3).trim(),
       firstName: Joi.string().required().min(3).max(32).trim(),
       lastName: Joi.string().required().min(3).max(32).trim(),
       email: Joi.string().required().max(36).trim().lowercase(),
@@ -187,12 +187,16 @@ router.post('/account/add', async (req, res, next) => {
 
       const emailPattern = new RegExp(/^([^@]{1,})\@([A-Za-z0-9\.]{1,})\.([A-Za-z]{1,})$/);
       const phonePattern = new RegExp(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/);
-
+      const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
       if (!(phonePattern.test(account.phone))) {
         error = "Invalid Phone format."
       }
       if (!(emailPattern.test(account.email))) {
         error = "Invalid Email format."
+      }
+
+      if (!(passwordPattern.test(account.password)) || (account.password == 'P@ssw0rd')) {
+        error = "Password must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
       }
 
       // let usernameCheck = await db.getAccountsByUsername(account.username);
@@ -234,7 +238,7 @@ router.post('/account/add', async (req, res, next) => {
 });
 
 
-// Edit car
+// Edit account
 router.post('/account/edit/:id', async (req, res, next) => {
   try {
 
@@ -244,7 +248,7 @@ router.post('/account/edit/:id', async (req, res, next) => {
     const schema = Joi.object({
       _id: Joi.objectId().required(),
       username: Joi.string().required().min(3).max(24).trim(),
-      password: Joi.string().required().min(3).max(64).trim(),
+      password: Joi.string().required().min(3).trim(),
       firstName: Joi.string().required().min(3).max(32).trim(),
       lastName: Joi.string().required().min(3).max(32).trim(),
       email: Joi.string().required().max(36).trim().lowercase(),
@@ -259,24 +263,17 @@ router.post('/account/edit/:id', async (req, res, next) => {
 
       const emailPattern = new RegExp(/^([^@]{1,})\@([A-Za-z0-9\.]{1,})\.([A-Za-z]{1,})$/);
       const phonePattern = new RegExp(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/);
-
+      const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
       if (!(phonePattern.test(account.phone))) {
         error = "Invalid Phone format."
       }
       if (!(emailPattern.test(account.email))) {
         error = "Invalid Email format."
       }
+      if (!(passwordPattern.test(account.password)) || (account.password == 'P@ssw0rd')) {
+        error = "Password must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
+      }
 
-      // let usernameCheck = await db.getAccountsByUsername(account.username);
-      // let emailCheck = await db.getAccountsByEmail(account.email);
-
-      // if (account.username !== usernameCheck) {
-      //   error = 'Username already exists.';
-      // }
-
-      // if (emailCheck) {
-      //   error = 'Email already exists.'
-      // }
     }
     if (error) {
       res.render('admin/account/edit', {
