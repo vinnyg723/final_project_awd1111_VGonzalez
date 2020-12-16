@@ -123,6 +123,14 @@ router.post('/register', async (req, res, next) => {
     if (!(emailPattern.test(account.email))) {
       error = "Invalid Email format."
     }
+
+
+    let checkPassword = account.password;
+    if( (checkPassword.includes("123")) || (checkPassword.includes("abc"))){
+      error = "Password is not secure enough."
+    }
+
+
     if (!(passwordPattern.test(account.password)) || (account.password == 'P@ssw0rd')) {
       error = "Password must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
     }

@@ -1,5 +1,8 @@
 const config = require('config');
-const { MongoClient, ObjectID } = require('mongodb');
+const {
+  MongoClient,
+  ObjectID
+} = require('mongodb');
 
 let _database = null;
 
@@ -34,22 +37,30 @@ const getAllAccounts = async () => {
 
 const getCarsByModel = async (model) => {
   const database = await connect();
-  return database.collection('cars').find({ model: model }).toArray();
+  return database.collection('cars').find({
+    model: model
+  }).toArray();
 };
 
 const getCarsByPrice = async (price) => {
   const database = await connect();
-  return database.collection('cars').find({ price: price }).toArray();
+  return database.collection('cars').find({
+    price: price
+  }).toArray();
 };
 
 const getCarsByType = async (type) => {
   const database = await connect();
-  return database.collection('cars').find({ type: type }).toArray();
+  return database.collection('cars').find({
+    type: type
+  }).toArray();
 };
 
 const getCarByName = async (name) => {
   const database = await connect();
-  return database.collection('cars').findOne({ name: name }).toArray();
+  return database.collection('cars').findOne({
+    name: name
+  }).toArray();
 };
 
 const getCarById = async (id) => {
@@ -79,44 +90,80 @@ const insertOrder = async (order) => {
 
 const updateCar = async (car) => {
   const database = await connect();
-  return database.collection('cars').updateOne(
-    { _id: new ObjectID(car._id) },
-    {
-      $set: {
-        name: car.name,
-        model: car.model,
-        price: car.price,
-        type: car.type,
-        year: car.year,
-        description: car.description,
-        keywords: car.keywords
-      },
-    }
-  );
+  return database.collection('cars').updateOne({
+    _id: new ObjectID(car._id)
+  }, {
+    $set: {
+      name: car.name,
+      model: car.model,
+      price: car.price,
+      type: car.type,
+      year: car.year,
+      description: car.description,
+      keywords: car.keywords
+    },
+  });
 };
 
 const updateOrder = async (order) => {
   const database = await connect();
-  return database.collection('orders').updateOne(
-    { _id: new ObjectID(order._id) },
-    {
-      $set: {
-        car_id: order.car_id,
-        firstName: order.firstName,
-        lastName: order.lastName,
-        email: order.email,
-        phone: order.phone,
-      },
-    }
-  );
+  return database.collection('orders').updateOne({
+    _id: new ObjectID(order._id)
+  }, {
+    $set: {
+      car_id: order.car_id,
+      firstName: order.firstName,
+      lastName: order.lastName,
+      email: order.email,
+      phone: order.phone,
+    },
+  });
 };
 
 const updateAccount = async (account) => {
   const database = await connect();
-  return database.collection('accounts').updateOne(
-    { _id: new ObjectID(account._id) },
+  return database.collection('accounts').updateOne({
+    _id: new ObjectID(account._id)
+  }, {
+    $set: {
+      username: account.username,
+      password: account.password,
+      lastName: account.lastName,
+      firstName: account.firstName,
+      email: account.email,
+      phone: account.phone,
+      keywords: account.keywords
+    },
+  });
+};
+
+const deleteOrderById = async (id) => {
+  const database = await connect();
+  return database.collection('orders').deleteOne({
+    _id: new ObjectID(id)
+  });
+};
+
+const deleteAccountById = async (id) => {
+  const database = await connect();
+  return database.collection('accounts').deleteOne({
+    _id: new ObjectID(id)
+  });
+};
+
+const deleteCarById = async (id) => {
+  const database = await connect();
+  return database.collection('cars').deleteOne({
+    _id: new ObjectID(id)
+  });
+};
+
+
+const insertAccount = async (account) => {
+  const database = await connect();
+  return database.collection('accounts').insertOne(
     {
-      $set: {
+      //Keeps confirm Password out
         username: account.username,
         password: account.password,
         lastName: account.lastName,
@@ -124,29 +171,7 @@ const updateAccount = async (account) => {
         email: account.email,
         phone: account.phone,
         keywords: account.keywords
-      },
-    }
-  );
-};
-
-const deleteOrderById = async (id) => {
-  const database = await connect();
-  return database.collection('orders').deleteOne({ _id: new ObjectID(id) });
-};
-
-const deleteAccountById = async (id) => {
-  const database = await connect();
-  return database.collection('accounts').deleteOne({ _id: new ObjectID(id) });
-};
-
-const deleteCarById = async (id) => {
-  const database = await connect();
-  return database.collection('cars').deleteOne({ _id: new ObjectID(id) });
-};
-
-const insertAccount = async (account) => {
-  const database = await connect();
-  return database.collection('accounts').insertOne(account);
+  });
 };
 
 const getAccountByEmail = async (email) => {
@@ -179,7 +204,9 @@ const getAccountsByEmail = async (email) => {
 
 const getAccountById = async (id) => {
   const database = await connect();
-  return database.collection('accounts').findOne({ _id: new ObjectID(id) });
+  return database.collection('accounts').findOne({
+    _id: new ObjectID(id)
+  });
 };
 
 
@@ -209,5 +236,5 @@ module.exports = {
   getAccountsByUsername,
   getAccountsByEmail,
   getAccountByEmail,
- 
+
 };

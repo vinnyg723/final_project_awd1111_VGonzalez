@@ -202,16 +202,10 @@ router.post('/account/add', async (req, res, next) => {
         error = "Password must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
       }
 
-      // let usernameCheck = await db.getAccountsByUsername(account.username);
-      // let emailCheck = await db.getAccountsByEmail(account.email);
-
-      // if (account.username !== usernameCheck) {
-      //   error = 'Username already exists.';
-      // }
-
-      // if (emailCheck) {
-      //   error = 'Email already exists.'
-      // }
+      let checkPassword = account.password;
+      if( (checkPassword.includes("123")) || (checkPassword.includes("abc"))){
+        error = "Password is not secure enough."
+      }
     }
     if (error) {
       res.render('admin/account/add', {
@@ -276,10 +270,14 @@ router.post('/account/edit/:id', async (req, res, next) => {
       if (!(emailPattern.test(account.email))) {
         error = "Invalid Email format."
       }
-      if (!(passwordPattern.test(account.password)) || (account.password == 'P@ssw0rd')) {
+      if (!(passwordPattern.test(account.password)) || (account.password == 'P@ssw0rd') || ((account.password).contains("123")) || ((account.password).contains("abc"))) {
         error = "Password must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
       }
 
+      let checkPassword = account.password;
+      if( (checkPassword.includes("123")) || (checkPassword.includes("abc"))){
+        error = "Password is not secure enough."
+      }
     }
     if (error) {
       res.render('admin/account/edit', {
