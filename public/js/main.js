@@ -9,12 +9,19 @@ $(() => {
 });
 
 $(document).ready(function(){
-  $('#clearForm').click(function(){				
-      $('#order-form,#register-form input[type="text"]').val('');
-      $('#order-form,#register-form input[type="email"]').val('');
-      $('#order-form,#register-form input[type="phone"]').val('');		
-      $('#register-form input[type="password"]').val('');		
+  $('#clearOrderForm').click(function(){				
+      $('#order-form input[type="text"]').val('');
+      $('#order-form input[type="email"]').val('');
+      $('#order-form input[type="phone"]').val('');		
   });
 });
 
-
+$(document).ready(function(){
+  $('#clearRegisterForm').click(function(){				
+      $('#register-form input[type="text"]').val('');
+      $('#register-form input[type="email"]').val('');
+      $('#register-form input[type="phone"]').val('');
+      
+$('#register-form input[type="password"]').val('');
+  });
+});
