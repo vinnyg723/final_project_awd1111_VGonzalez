@@ -99,6 +99,7 @@ router.post('/register', async (req, res, next) => {
     const schema = Joi.object({
       username: Joi.string().required().min(3).max(24).trim(),
       password: Joi.string().required().min(3).trim(),
+      confirmPassword: Joi.string().required().min(3).trim(),
       firstName: Joi.string().required().min(3).max(32).trim(),
       lastName: Joi.string().required().min(3).max(32).trim(),
       email: Joi.string().required().max(36).trim().lowercase(),
@@ -110,7 +111,9 @@ router.post('/register', async (req, res, next) => {
       error = 'Invalid fields';
     }
     else{
-
+      if (!(account.password == account.confirmPassword)) {
+        error = 'Passwords do not match.';
+      }
     const emailPattern = new RegExp(/^([^@]{1,})\@([A-Za-z0-9\.]{1,})\.([A-Za-z]{1,})$/);
     const phonePattern = new RegExp(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/);
     const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
