@@ -374,7 +374,7 @@ router.post('/order/add', async (req, res, next) => {
       })
     } else {
 
-     
+
       debug(order)
       await db.insertOrder(order);
       res.render('added', {
@@ -465,7 +465,7 @@ router.post('/order/delete/:id', async (req, res, next) => {
 // router.get('/order', async (req, res, next) => {
 //   try {
 //     const q = req.query.q;
-    
+
 //     const sortBy = req.query.sortBy;
 //     const collation = {
 //       locale: 'en_US',
@@ -515,7 +515,7 @@ router.post('/order/delete/:id', async (req, res, next) => {
 //       {
 //         $project: {
 //           email: 1,
-        
+
 //           lastName: 1,
 //           relevance: q ? {
 //             $meta: 'textScore'

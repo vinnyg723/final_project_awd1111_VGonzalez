@@ -1,4 +1,3 @@
-
 const express = require('express');
 const db = require('../db');
 
@@ -205,8 +204,9 @@ router.get('/car', async (req, res, next) => {
         },
       },
       {
-        $sort: sortStage
-      }
+        $sort: sortStage,
+      },
+
     ];
 
     const conn = await db.connect();
