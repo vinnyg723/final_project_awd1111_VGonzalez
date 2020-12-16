@@ -2,19 +2,19 @@
 
     {{#with order}}
          <nav aria-label="breadcrumb ml-auto">
-  <ol class="breadcrumb ml-2">
+  <ol class="breadcrumb ml-2 smallerText">
         <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
         <li class="breadcrumb-item"><a href="/admin/order">View Orders</a></li>
         <li class="breadcrumb-item"  aria-current="page"><a href="/admin/order/delete/{{_id}}">Delete</a></li>
       </ol>
       </nav>
         <div class="row mb-4">
-    <h2 class="h1 mb-4 mr-auto ml-2 shadow">Delete Order Page</h2>
+    <h2 class="h1 mb-4 mr-auto ml-2 shadow h2Text">Delete Order Page</h2>
   </div>
   <div class="row d-flex justify-content-center align-self-center mx-3">
     <div class="card col-12" style="max-width: 26rem;">
       <div class="card-body text-center">
-        <h5 class="card-title h5 shadow">Order Id: {{_id}}</h5>
+        <h5 class="card-title h5 shadow h1Text">Order Id: {{_id}}</h5>
         <p class="card-text shadow h5">{{firstName}} &nbsp; {{lastName}}</p>
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center h5 shadow">{{phone}} / {{email}}</li>

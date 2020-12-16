@@ -11,7 +11,7 @@ router.use(express.json());
 router.get('/', async (req, res, next) => {
   try {
     res.render('search', {
-      title: 'Car Rescue',
+      title: 'Car Search',
     });
 
   } catch (err) {

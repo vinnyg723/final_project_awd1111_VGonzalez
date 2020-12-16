@@ -2,20 +2,28 @@
 
   {{#with order}}
      <nav aria-label="breadcrumb ml-auto">
-  <ol class="breadcrumb ml-2">
+  <ol class="breadcrumb ml-2 smallerText">
         <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
         <li class="breadcrumb-item"><a href="/admin/order">View Orders</a></li>
         <li class="breadcrumb-item"  aria-current="page"><a href="/admin/order/edit/{{_id}}">Edit</a></li>
       </ol>
       </nav>
-  <h1 class="shadow">Edit {{username}}</h1>
+  <h1 class="shadow h2Text">Edit {{username}}</h1>
   <form id="edit-order-form" method="POST" class="form needs-validation" action="/api/admin/order/edit/{{_id}}" novalidate>
-   <input id="_id" name="_id" class="form-control" type="text" value="{{_id}}" required>
+   <input id="_id" name="_id" class="form-control" type="text" value="{{_id}}" hidden>
+    <input id="car_id" name="car_id" class="form-control" type="text" value="{{car_id}}" hidden>
     <div class="form-group">
       <label for="_id">Order Id</label>
       <input id="_id" name="_id" class="form-control" type="text" value="{{_id}}" required disabled>
       <div class="invalid-feedback">
         Please enter an order id.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="car_id">Car Id</label>
+      <input id="car_id" name="car_id" class="form-control" type="text" value="{{car_id}}" required disabled>
+      <div class="invalid-feedback">
+        Please enter an car id.
       </div>
     </div>
     <div class="form-group">
@@ -44,6 +52,13 @@
       <input id="phone" name="phone" class="form-control" type="text" value="{{phone}}" required>
       <div class="invalid-feedback">
         Please enter a phone number.
+      </div>
+    </div>
+     <div class="form-group">
+      <label for="keywords" class="mt-2">Keywords</label>
+      <input id="keywords" name="keywords" class="form-control" type="text" value={{keywords}} required>
+      <div class="invalid-feedback">
+        Please enter keywords separated by a comma or space.
       </div>
     </div>
     <div class="form-group">

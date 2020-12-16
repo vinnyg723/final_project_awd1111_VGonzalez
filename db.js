@@ -103,7 +103,7 @@ const updateOrder = async (order) => {
       $set: {
         car_id: order.car_id,
         firstName: order.firstName,
-        lastName: order.price,
+        lastName: order.lastName,
         email: order.email,
         phone: order.phone,
       },

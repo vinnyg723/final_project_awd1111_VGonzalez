@@ -19,7 +19,7 @@
     crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css" />
   {{!--
   <script defer src="/js/jquery.min.js"></script> --}}
@@ -32,7 +32,9 @@
 <body>
 
   <nav class="navbar navbar-expand-lg bg-recolor navMain">
-    <a class="navbar-brand text-white toplogo" href="/"><img src="../images/logo.png"  alt="Logo">&nbsp; Mercedes Benz Online Dealership</a>
+    <a class="navbar-brand text-white toplogo" href="/">
+      <div class=" navText"><img src="../images/logo.png" alt="Logo">&nbsp; Mercedes Benz Online Dealership</div>
+    </a>
     <button class="navbar-toggler ml-auto pt-2" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"><i class="fas fa-grip-lines"></i></span>
@@ -41,7 +43,8 @@
       <ul class="navbar-nav ml-auto navText">
         {{!-- Needs to be shown ONLY if 'Admin' --}}
         <li class="nav-item  mr-5">
-          <a class="btn btn-info ml-auto mr-5 text-white shadow" href="/admin"><i class="fas fa-user-cog"></i>&nbsp; Admin</a>
+          <a class="btn btn-info ml-auto mr-5 text-white shadow" href="/admin"><i class="fas fa-user-cog"></i>&nbsp;
+            Admin</a>
         </li>
         <a class="nav-link text-white" href="/search"><i class="fas fa-car"></i>&nbsp; Vehicles</a>
         </li>
@@ -59,11 +62,13 @@
 
 
 
-{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" crossorigin="anonymous"></script> --}}
-<div class="wrapper">
-  {{{body}}}
-  
-</div>
+  {{!--
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+    integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" crossorigin="anonymous"></script> --}}
+  <div class="wrapper">
+    {{{body}}}
+
+  </div>
 </body>
 
 

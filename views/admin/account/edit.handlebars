@@ -2,13 +2,13 @@
 
   {{#with account}}
      <nav aria-label="breadcrumb ml-auto">
-  <ol class="breadcrumb ml-2">
+  <ol class="breadcrumb ml-2  smallerText">
         <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
         <li class="breadcrumb-item"><a href="/admin/account">View Accounts</a></li>
         <li class="breadcrumb-item"  aria-current="page"><a href="/admin/account/edit/{{_id}}">Edit</a></li>
       </ol>
       </nav>
-  <h1 class="shadow">Edit {{username}}</h1>
+  <h1 class="shadow h2Text">Edit {{username}}</h1>
   <form id="edit-account-form" method="POST" class="form needs-validation" action="/api/admin/account/edit/{{_id}}" novalidate>
     <input id="_id" name="_id" class="form-control" type="text" value={{_id}} hidden>
     <div class="form-group">

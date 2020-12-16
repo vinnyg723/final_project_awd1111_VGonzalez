@@ -346,6 +346,8 @@ router.post('/order/add', async (req, res, next) => {
       lastName: Joi.string().required().min(3).max(32).trim(),
       email: Joi.string().required().max(36).trim().lowercase(),
       phone: Joi.string().required(),
+      car_id: Joi.string().required(),
+      keywords: Joi.string().required().min(1).max(200).trim(),
     });
 
     order = await schema.validateAsync(req.body)
@@ -400,6 +402,8 @@ router.post('/order/edit/:id', async (req, res, next) => {
       lastName: Joi.string().required().min(3).max(32).trim(),
       email: Joi.string().required().max(36).trim().lowercase(),
       phone: Joi.string().required(),
+      car_id: Joi.objectId().required(),
+      keywords: Joi.string().required().min(1).max(200).trim(),
     });
 
     order = await schema.validateAsync(req.body)
@@ -457,5 +461,89 @@ router.post('/order/delete/:id', async (req, res, next) => {
   }
 });
 
+
+// router.get('/order', async (req, res, next) => {
+//   try {
+//     const q = req.query.q;
+    
+//     const sortBy = req.query.sortBy;
+//     const collation = {
+//       locale: 'en_US',
+//       strength: 1
+//     };
+
+
+//     const matchStage = {};
+//     if (q) {
+//       matchStage.$text = {
+//         $search: q
+//       };
+//     }
+
+
+//     let sortStage = null;
+//     switch (sortBy) {
+//       case 'name_A':
+//         sortStage = {
+//           lastName: 1
+//         };
+//         break;
+//       case 'name_Z':
+//         sortStage = {
+//           lastName: -1
+//         };
+//         break;
+//       case 'email':
+//         sortStage = {
+//           email: 1
+//         };
+//         break;
+//       case 'relevance':
+//       default:
+//         sortStage = q ? {
+//           relevance: -1
+//         } : {
+//           lastName: 1
+//         };
+//         break;
+//     }
+
+
+//     const pipeline = [{
+//         $match: matchStage
+//       },
+//       {
+//         $project: {
+//           email: 1,
+        
+//           lastName: 1,
+//           relevance: q ? {
+//             $meta: 'textScore'
+//           } : null,
+//         },
+//       },
+//       {
+//         $sort: sortStage
+//       }
+//     ];
+
+//     const conn = await db.connect();
+//     const cursor = conn
+//       .collection('orders')
+//       .aggregate(pipeline, {
+//         collation: collation
+//       });
+
+//     res.type('application/json');
+//     res.write('[\n');
+//     for await (const doc of cursor) {
+//       res.write(JSON.stringify(doc));
+//       res.write(',\n');
+//     }
+//     res.end('null]');
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 module.exports = router;
