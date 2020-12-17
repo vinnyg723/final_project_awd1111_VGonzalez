@@ -1,28 +1,37 @@
 a {
   color: var(--info);
 }
+
 a:hover,
 a:focus {
   color: var(--info);
 }
+
 img {
-  width: 200px; 
+  width: 200px;
   height: 300px;
   object-fit: cover;
 }
 
 
-.navbar-toggler-icon,.navbar-toggler{
+.navbar-toggler-icon,
+.navbar-toggler {
   background-color: rgb(54, 54, 54)
 }
 
 
-*{
+* {
   font-family: 'Playfair Display', serif;
 }
-h1,h2,h3,h4,h5{
+
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-family: 'Libre Baskerville', serif;
 }
+
 .animate__animated.animate__bounceIn {
   --animate-duration: 2s;
 }
@@ -42,28 +51,39 @@ h1,h2,h3,h4,h5{
 }
 
 @keyframes animation {
-   100%{
-    background-position:0px -3000px;
+  100% {
+    background-position: 0px -3000px;
   }
 }
 
 @media (max-width: 500px) {
   .smallerText {
-    font-size:12px;
-    }
-  .navText {
-  font-size:12px;
+    font-size: 12px;
   }
+
+  .navText {
+    font-size: 12px;
+
+  }
+
   .h0Text {
-    font-size:25px;
-    }
+    font-size: 25px;
+  }
+
   .h1Text {
-    font-size:25px;
-    }
-    .h2Text {
-      font-size:35px;
-      }
+    font-size: 25px;
+  }
+
+  .h2Text {
+    font-size: 35px;
+  }
+
+  .mobileFit {display: flex}
 }
+.mobileUL{
+  padding-top: 1rem;
+}
+
 
 
 
@@ -73,8 +93,8 @@ h1,h2,h3,h4,h5{
 }
 
 .toplogo img {
-  height : 8%;
-  width : 8%;
+  height: 8%;
+  width: 8%;
 }
 
 .imageO {
@@ -85,11 +105,11 @@ h1,h2,h3,h4,h5{
   opacity: 0.5;
 }
 
-.modal-backdrop{
+.modal-backdrop {
   display: none;
 }
 
-#searchButton{
+#searchButton {
   border-left: none;
   float: left;
 }
@@ -105,7 +125,17 @@ h1,h2,h3,h4,h5{
   overflow-y: auto;
 }
 
-.wrapper>#view,#loginPage,#registerPage,#orderPage,#addedPage,#deletedPage,#editedPage,#thankYouPage,#edit,#add,#delete{
+.wrapper>#view,
+#loginPage,
+#registerPage,
+#orderPage,
+#addedPage,
+#deletedPage,
+#editedPage,
+#thankYouPage,
+#edit,
+#add,
+#delete {
   background: rgba(0, 0, 0, .35);
   width: 100%;
   height: 100vh;
@@ -115,20 +145,21 @@ h1,h2,h3,h4,h5{
   animation: animation 200s linear infinite;
 }
 
-.shadow{
+.shadow {
   text-shadow: 2px 2px rgb(34, 34, 34);
 }
 
-.light_grey{
-  color:rgb(214, 214, 214);
+.light_grey {
+  color: rgb(214, 214, 214);
 }
 
 .navMain {
-  
+
   width: 100%;
   border-bottom: 3px solid rgba(53, 77, 121, 0.623);
 }
-footer{
+
+footer {
   border-top: 3px solid rgba(53, 77, 121, 0.623);
 }
 
