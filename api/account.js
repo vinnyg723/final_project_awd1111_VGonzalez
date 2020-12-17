@@ -119,7 +119,7 @@ router.post('/register', async (req, res, next) => {
       }
     const emailPattern = new RegExp(/^([^@]{1,})\@([A-Za-z0-9\.]{1,})\.([A-Za-z]{1,})$/);
     const phonePattern = new RegExp(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/);
-    const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
+    //const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
     if (!(phonePattern.test(account.phone))) {
       error = "Invalid Phone format."
     }
@@ -129,14 +129,12 @@ router.post('/register', async (req, res, next) => {
 
 
     let checkPassword = account.password;
-    if( (checkPassword.includes("123")) || (checkPassword.includes("abc"))){
-      error = "Password is not secure enough."
-    }
-
-
-    if (!(passwordPattern.test(account.password)) || (account.password == 'P@ssw0rd')) {
-      error = "Password must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
-    }
+    // if( (checkPassword.includes("123")) || (checkPassword.includes("abc"))){
+    //   error = "Password is not secure enough."
+    // }
+    // if (!(passwordPattern.test(account.password)) || (account.password == 'P@ssw0rd')) {
+    //   error = "Password must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
+    // }
     let usernameCheck = await db.getAccountsByUsername(account.username);
     let emailCheck = await db.getAccountsByEmail(account.email);
 
