@@ -26,7 +26,7 @@ router.get('/login', (req, res) =>
 // LOGOUT -----------------------
 
 router.get('/logout', (req, res) => {
-  global.current_id = null;
+
   res.clearCookie('auth_token');
   res.redirect('/account/login');
 });

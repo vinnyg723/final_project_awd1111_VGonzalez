@@ -23,7 +23,7 @@ const sendError = (err, res) => {
   }
 }
 
-global.current_id = null;
+
 
 
 // Add car

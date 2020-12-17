@@ -17,6 +17,7 @@ router.get('/', auth, admin, async (req, res, next) => {
     res.render('admin/view', {
       title: 'Admin Page',
       auth: req.auth,
+      
     });
   } catch (err) {
     next(err);

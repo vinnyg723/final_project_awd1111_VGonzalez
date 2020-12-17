@@ -44,6 +44,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto navText">
+        {{#if auth}}
+        <li class="nav-item  mr-5">
+         <div>{{currentAccount}}</div>
+        </li>
+        {{/if}}
         {{!-- Needs to be shown ONLY if 'Admin' --}}
         <li class="nav-item  mr-5">
           <a class="btn btn-info ml-auto mr-5 text-white shadow" href="/admin"><i class="fas fa-user-cog"></i>&nbsp;

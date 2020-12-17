@@ -25,7 +25,7 @@ const sendError = (err, res) => {
   }
 }
 
-global.current_id = null;
+
 
 
 
@@ -64,12 +64,15 @@ router.post('/login', async (req, res, next) => {
       const payload = {
         account_id: account._id,
         username: account.username,
+        firstName: account.firstName,
+        lastName: account.lastName,
+        phone: account.phone,
         email: account.email,
         is_admin: account.is_admin,
         type: 'login',
       };
 
-      global.current_id = payload.account_id;
+   
 
       const secret = config.get('auth.secret');
       const token = jwt.sign(payload, secret, {

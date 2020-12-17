@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../db');
-
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 router.use(express.urlencoded({
@@ -8,16 +8,7 @@ router.use(express.urlencoded({
 }));
 router.use(express.json());
 
-router.get('/', async (req, res, next) => {
-  try {
-    res.render('search', {
-      title: 'Car Search',
-    });
 
-  } catch (err) {
-    next(err);
-  }
-});
 
 router.get('/:id', async (req, res, next) => {
   try {
@@ -29,6 +20,7 @@ router.get('/:id', async (req, res, next) => {
       res.render('car/view', {
         title: car.name,
         car,
+
       });
     } else {
       res.status(404).type('text/plain').send('car not found');
@@ -38,14 +30,9 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.get('/:id/order', async (req, res, next) => {
+router.get('/:id/order', auth, async (req, res, next) => {
   try {
-    if (current_id != null) {
-      account = await db.getAccountById(current_id);
-    }
-    else{
-      account = null
-    }
+
 
     const car_id = req.params.id;
     const car = await db.getCarById(car_id);
@@ -54,7 +41,8 @@ router.get('/:id/order', async (req, res, next) => {
       res.render('car/order', {
         title: car.name + " order",
         car,
-        account
+        auth: req.auth,
+
       });
     } else {
       res.status(404).type('text/plain').send('car not found');
