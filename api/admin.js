@@ -33,12 +33,12 @@ router.post('/car/add', async (req, res, next) => {
     let error = null;
 
     const schema = Joi.object({
-      name: Joi.string().required().min(1).max(32).trim(),
-      image: Joi.string().min(1).max(32).trim(),
+      name: Joi.string().required().min(1).max(42).trim(),
+      image: Joi.string().min(1).max(75).trim(),
       model: Joi.string().required().min(1).max(32).trim(),
       type: Joi.string().required().min(1).max(32).trim(),
-      price: Joi.string().required(),
-      year: Joi.string().required(),
+      price: Joi.number().required(),
+      year: Joi.number().required(),
       description: Joi.string().required().min(1).max(126).trim(),
       keywords: Joi.string().required().min(1).max(126).trim(),
     });
@@ -88,12 +88,12 @@ router.post('/car/edit/:id', async (req, res, next) => {
 
     const schema = Joi.object({
       _id: Joi.objectId().required(),
-      name: Joi.string().required().min(1).max(32).trim(),
-      image: Joi.string().min(1).max(32).trim(),
+      name: Joi.string().required().min(1).max(42).trim(),
+      image: Joi.string().min(1).max(75).trim(),
       model: Joi.string().required().min(1).max(32).trim(),
       type: Joi.string().required().min(1).max(32).trim(),
       price: Joi.number().required(),
-      year: Joi.string().required(),
+      year: Joi.number().required(),
       description: Joi.string().required().min(1).max(126).trim(),
       keywords: Joi.string().required().min(1).max(126).trim(),
     });
@@ -171,12 +171,12 @@ router.post('/account/add', async (req, res, next) => {
     let error = null;
 
     const schema = Joi.object({
-      username: Joi.string().required().min(3).max(24).trim(),
+      username: Joi.string().required().min(3).max(42).trim(),
       password: Joi.string().required().min(3).trim(),
       confirmPassword: Joi.string().required().min(3).trim(),
-      firstName: Joi.string().required().min(3).max(32).trim(),
-      lastName: Joi.string().required().min(3).max(32).trim(),
-      email: Joi.string().required().max(36).trim().lowercase(),
+      firstName: Joi.string().required().min(1).trim(),
+      lastName: Joi.string().required().min(1).trim(),
+      email: Joi.string().required().max(76).trim().lowercase(),
       phone: Joi.string().required(),
       keywords: Joi.string().required().min(1).max(200).trim(),
     });
@@ -244,12 +244,12 @@ router.post('/account/edit/:id', async (req, res, next) => {
 
     const schema = Joi.object({
       _id: Joi.objectId().required(),
-      username: Joi.string().required().min(3).max(24).trim(),
+      username: Joi.string().required().min(3).max(42).trim(),
       password: Joi.string().required().min(3).trim(),
       confirmPassword: Joi.string().required().min(3).trim(),
-      firstName: Joi.string().required().min(3).max(32).trim(),
-      lastName: Joi.string().required().min(3).max(32).trim(),
-      email: Joi.string().required().max(36).trim().lowercase(),
+      firstName: Joi.string().required().min(1).trim(),
+      lastName: Joi.string().required().min(1).trim(),
+      email: Joi.string().required().max(76).trim().lowercase(),
       phone: Joi.string().required(),
       keywords: Joi.string().required().min(1).max(200).trim(),
     });
@@ -270,7 +270,7 @@ router.post('/account/edit/:id', async (req, res, next) => {
       if (!(emailPattern.test(account.email))) {
         error = "Invalid Email format."
       }
-      if (!(passwordPattern.test(account.password)) || (account.password == 'P@ssw0rd') || ((account.password).contains("123")) || ((account.password).contains("abc"))) {
+      if (!(passwordPattern.test(account.password)) || (account.password == 'P@ssw0rd')) {
         error = "Password must have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
       }
 
@@ -343,9 +343,9 @@ router.post('/order/add', async (req, res, next) => {
     let error = null;
 
     const schema = Joi.object({
-      firstName: Joi.string().required().min(3).max(32).trim(),
-      lastName: Joi.string().required().min(3).max(32).trim(),
-      email: Joi.string().required().max(36).trim().lowercase(),
+      firstName: Joi.string().required().min(1).trim(),
+      lastName: Joi.string().required().min(1).trim(),
+      email: Joi.string().required().max(76).trim().lowercase(),
       phone: Joi.string().required(),
       car_id: Joi.string().required(),
       keywords: Joi.string().required().min(1).max(200).trim(),
@@ -399,9 +399,9 @@ router.post('/order/edit/:id', async (req, res, next) => {
 
     const schema = Joi.object({
       _id: Joi.objectId().required(),
-      firstName: Joi.string().required().min(3).max(32).trim(),
-      lastName: Joi.string().required().min(3).max(32).trim(),
-      email: Joi.string().required().max(36).trim().lowercase(),
+      firstName: Joi.string().required().min(1).trim(),
+      lastName: Joi.string().required().min(1).trim(),
+      email: Joi.string().required().max(76).trim().lowercase(),
       phone: Joi.string().required(),
       car_id: Joi.objectId().required(),
       keywords: Joi.string().required().min(1).max(200).trim(),

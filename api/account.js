@@ -97,12 +97,12 @@ router.post('/register', async (req, res, next) => {
     let error = null;
 
     const schema = Joi.object({
-      username: Joi.string().required().min(3).max(24).trim(),
+      username: Joi.string().required().min(3).max(42).trim(),
       password: Joi.string().required().min(3).trim(),
       confirmPassword: Joi.string().required().min(3).trim(),
-      firstName: Joi.string().required().min(3).max(32).trim(),
-      lastName: Joi.string().required().min(3).max(32).trim(),
-      email: Joi.string().required().max(36).trim().lowercase(),
+      firstName: Joi.string().required().min(1).trim(),
+      lastName: Joi.string().required().min(1).trim(),
+      email: Joi.string().required().max(76).trim().lowercase(),
       phone: Joi.string().required()
     });
 

@@ -29,9 +29,9 @@ router.post('/:id/order', async (req, res, next) => {
     let error = null;
 
     const schema = Joi.object({
-      firstName: Joi.string().required().min(3).max(32).trim(),
-      lastName: Joi.string().required().min(3).max(32).trim(),
-      email: Joi.string().required().max(36).trim().lowercase(),
+      firstName: Joi.string().required().min(1).trim(),
+      lastName: Joi.string().required().min(1).trim(),
+      email: Joi.string().required().max(76).trim().lowercase(),
       phone: Joi.string().required(),
       car_id: Joi.string().required().min(24).max(24),
     });
