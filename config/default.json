@@ -10,7 +10,7 @@
   },
   "auth": {
     "saltRounds": 10,
-    "secret": "",
+    "secret": "authSecret",
     "expires": 3600000
   }
 }
